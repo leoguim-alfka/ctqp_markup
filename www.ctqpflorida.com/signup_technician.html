@@ -160,33 +160,48 @@
 				
 		<div id="officebody">
 			<h4>Technicians Login</h4>
-			<p>Please enter your login credentials to access the secured CTQP Portal.</p>
+			<p>Please enter the following information to create a CTQP Technician Account.</p>
 			<br>			
-			<div id="formtable">			
+			<div id="formtable">
+			<p><small>In order to sign up for a CTQP account you must have taken a CTQP exam.</small></p>			
 				<table style="width: 100%" align="center">
 					<tbody>
 						<form action="tech/index.html" method="post">
 							<tr>
-								<th>Username:</th>
-								<td><input type="text" placeholder="Enter Username" name="uname" required></td>
+								<th>First Name:</th>
+								<td><input type="text" placeholder="Enter First Name" name="fname" required></td>
+							</tr>
+							<tr>
+								<th>Last Name:</th>
+								<td><input type="text" placeholder="Enter Last Name" name="lname" required></td>
+							</tr>
+							<tr>
+								<th>Email:</th>
+								<td><input type="email" placeholder="Enter Email" name="email" required></td>
+							</tr>
+							<tr>
+								<th>TIN:</th>
+								<td><input type="text" placeholder="First 9 digits/letters from your ID" name="tin" required></td>
 							</tr>
 							<tr>
 								<th>Password:</th>
-								<td><input type="password" placeholder="Enter Password" name="psw" required></td>
+								<td><input type="password" placeholder="Enter Password" name="psw" id="psw" onkeyup='check();' required></td>
 							</tr>
 							<tr>
-								<td colspan="2" align="center"><button type="submit" style="background-color: black; color: white">LOGIN</button></td>
+								<th>Verify Password:</th>
+								<td><input type="password" placeholder="Re-Enter Password" name="vpsw" id="vpsw" onkeyup='check();' required></td>
 							</tr>
-						</form>
-						<form action="signup_technician.html" method="post">
 							<tr>
-								<td colspan="2" align="center"><button type="submit" style="background-color: gray; color: white">SIGN UP</button></td>
+								<td colspan="2" align="center"><button type="submit" style="background-color: black; color: white" id="sbtn" disabled>SIGN UP</button></td>
+							</tr>
+							<tr>
+								<td colspan="2" align="center" id="message"></td>
 							</tr>
 						</form>
 					</tbody>
 				</table>
 			</div>
-			<p><small>If you need to reset your password please click <a href="login_technician_reset.html">here</a>.</small></p>		
+			<p>[signup_success.html] [ signup_error.html] DELETE THIS LINE WHEN CODE IS COMPLETED FOR SUCCESS/ERROR MESSAGE</p>		
 		</div>
 					
 			</div> <!-- end content -->
@@ -271,6 +286,18 @@
 	var obText = st.concat(ob.clientHeight,"px !important");
 	if (ob.clientHeight > 700){
 		document.getElementById("officemenuleft").setAttribute('style', obText);
+	};
+	var check = function() {
+	  if (document.getElementById('psw').value ==
+		document.getElementById('vpsw').value) {
+		document.getElementById('message').style.color = 'green';
+		document.getElementById('message').innerHTML = 'Your password matches';
+		document.getElementById("sbtn").disabled = false;
+	  } else {
+		document.getElementById('message').style.color = 'red';
+		document.getElementById('message').innerHTML = 'Password does not match';
+		document.getElementById("sbtn").disabled = true;
+	  }
 	};
 </script>
 
